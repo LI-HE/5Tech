@@ -1,0 +1,167 @@
+    <style>
+
+    #standardFrame{
+      height: 100px;
+      width:  150px;
+    }
+    #padFrame{ss
+      margin-top:10px;
+        height: 200px;
+        width: 225px;
+    }
+    #leftIcon{
+      height: 300px;
+      width:  200px;
+    }
+
+	 #largeSpace{
+        display:block;
+      }
+  
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+	@media (max-width: 1366px) {
+
+	#smallSpace{
+        display:none;
+      }
+
+	 #largeSpace{
+        display:none;
+      }
+	}
+
+    @media (max-width: 1024px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+      iframe{
+        margin-top:10px;
+        height: 300px;
+        width: 90%;
+      }
+
+	  #smallSpace{
+        display:none;
+      }
+
+	 #largeSpace{
+       display:none;
+      }
+      
+
+    }
+
+
+    @media (max-width: 800px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      iframe{
+        height: 50%px;
+        width: 50%;
+      }
+
+	   #leftIcon{
+      height: 300px;
+      width:  150px;
+    }
+
+		#smallSpace{
+			display:none;
+		  }
+
+		 #largeSpace{
+			display:none;
+		  }
+      
+
+    }
+
+    </style>
+
+
+	<!-- START THE FEATURETTES -->
+      <br/><br/><br>
+       <!-- /END THE FEATURETTES -->
+<div class="container">
+	<div class="row-fluid" ng-controller="QuestController">
+	<div class="span3">
+	<h5>
+	ID: {{location.search(questID).questID}}<br>
+	Story ID: {{quests[location.search(questID).questID-1].storyID}}<br>
+	Path: {{quests[location.search(questID).questID-1].pathID}}<br>
+	Difficulty: {{quests[location.search(questID).questID-1].difficulty}}
+	</h5>
+			<div id="leftIcon" class="span2" align="left" style= "vertical-align:middle" ><img class="img-rounded" src="../assets/img/newStory.jpg"></img>
+			<br/><br/>
+        {{route()}}
+				<form action={{changeRoute}}>
+				<button class="btn btn-large btn-block btn-primary" type="submit">Start</button>
+				</form>
+				<form action="#home">
+				<button class="btn btn-large btn-block" type="submit">Back To Home</button>
+				</form>
+			</div>
+	</div>
+	<div class="span9 well" align="center" ng-controller="StoryController" ng-init="list();$parent.storyID=1;" style="height:470px; overflow:auto">
+					<h4>Story: {{stories[name-1].name}}</h4>
+						<ul class="thumbnails row-fluid" >
+								<span ng-repeat="story in stories[name-1].videos | limitTo: stories[name-1].videos.length-1" class="pull-left well">
+								<span class="badge badge-info">{{$index+1}}</span><p><p>
+								<iframe id="standardFrame" class="thumbnail" ng-src="http://www.youtube.com/embed/{{story}}" frameborder="0" allowfullscreen></iframe>	
+								<img  id="standardFrame" src="../assets/img/question.jpg"></img>
+								</span>
+						</ul>	
+								
+									<span class="badge badge-info">Final</span><p><p>
+									<span  ng-repeat="story in stories[name-1].videos | startFrom: stories[name-1].videos.length-1 | limitTo:1">
+									<iframe id="standardFrame" class="thumbnail" ng-src="http://www.youtube.com/embed/{{story}}" frameborder="0" allowfullscreen></iframe>	
+																	<p><p>
+									</span>
+
+								
+	</div>
+      
+</div>
+</div>
+
+<script>
+function changeRoute()
+{
+document.getElementById("demo").innerHTML=Date();
+}
+</script>
+
